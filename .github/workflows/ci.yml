@@ -25,4 +25,5 @@ jobs:
           external_repository: luckyoneday/luckyoneday.github.io
           publish_branch: master
           publish_dir: ./public
+          allow_empty_commit: true
           commit_message: ${{ github.event.head_commit.message }}
