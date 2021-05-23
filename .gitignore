@@ -2,6 +2,7 @@ deploy.sh
 .DS_Store
 *.swap
 
+themes/even
 public
 resources
 gh-pages
