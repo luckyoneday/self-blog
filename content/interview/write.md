@@ -7,7 +7,7 @@ toc: true
 keywords: ["interview"]
 description: "手写代码"
 tags: ["interview"]
-author: "youting"
+author: "xuyou"
 ---
 
 ## `Promise`

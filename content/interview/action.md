@@ -7,7 +7,7 @@ toc: false
 keywords: ["interview"]
 description: "面试实战"
 tags: ["interview"]
-author: "youting"
+author: "xuyou"
 ---
 
 - [first](../action-1-banyu)

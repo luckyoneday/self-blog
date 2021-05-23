@@ -7,7 +7,7 @@ toc: false
 keywords: ["interview"]
 description: "前端性能相关"
 tags: ["interview"]
-author: "youting"
+author: "xuyou"
 ---
 
 - [回流和重绘](../html/#如何减少)

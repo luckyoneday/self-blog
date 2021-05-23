@@ -7,7 +7,7 @@ toc: true
 keywords: ["interview"]
 description: "HTML面试知识点汇总"
 tags: ["interview"]
-author: "youting"
+author: "xuyou"
 ---
 
 ## 浏览器解析渲染机制

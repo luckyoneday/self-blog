@@ -7,12 +7,12 @@ toc: false
 keywords: ["daily"]
 description: "博客发布方式修改--github-action"
 tags: ["git"]
-author: "youting"
+author: "xuyou"
 ---
 
 之前博客发布是使用本地运行 `deploy.sh` 的方式，脚本可见 [deploy.sh](../4-deploy)，这种方式每次发布都重新生成 `public` 文件夹，需要重新进行 git 初始化操作，导致远端 github 仓库永远只有一次 commit，看不到变更操作。所以决定修改为由 github action 在 push 代码时触发 hugo 来构建 github page。
 
-触发 github action 需要在项目根目录下新建 `.github/workflows` 文件夹，并新建一个 `.yml` 结尾的文件，内容参考 [actions-hugo](https://github.com/peaceiris/actions-hugo)
+触发 github action 需要在项目根目录下新建 `.github/workflows` 文件夹，并新建一个 `.yml` 结尾的文件，内容参考 [actions-hugo](https://github.com/peaceiris/actions-hugo)。如果源 md 文件和打包出的 html 静态文件使用同一个 repo 的话，就会导致每次 push 都需要加 `-f`。为了避免这种操作可以设置两个 repo，一个存源 md 文件另一个存打包出来的，这就需要使用 [action-gh-pages](https://github.com/peaceiris/actions-gh-pages)，并设置 `external_repository` `deploy_key` 。
 
 ```yml
 name: CI
@@ -43,10 +43,6 @@ jobs:
           publish_branch: master
           publish_dir: ./public
 ```
-
-## deploy_key
-
-关于 deploy_key 可见 [action-gh-pages](https://github.com/peaceiris/actions-gh-pages)。
 
 ## sub modules
 

@@ -7,7 +7,7 @@ toc: true
 keywords: ["interview"]
 description: "ES6及新特性相关"
 tags: ["interview"]
-author: "youting"
+author: "xuyou"
 ---
 
 ## ES6

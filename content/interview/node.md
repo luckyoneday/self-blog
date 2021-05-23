@@ -7,7 +7,7 @@ toc: true
 keywords: ["interview"]
 description: "Node 面试知识点汇总"
 tags: ["interview"]
-author: "youting"
+author: "xuyou"
 ---
 
 ## 事件循环

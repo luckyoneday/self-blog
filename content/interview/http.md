@@ -7,7 +7,7 @@ toc: true
 keywords: ["interview"]
 description: "HTTP、浏览器面试知识点汇总"
 tags: ["interview"]
-author: "youting"
+author: "xuyou"
 ---
 
 ## TCP/IP 协议

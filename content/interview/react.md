@@ -6,7 +6,7 @@ draft: false
 toc: true
 keywords: ["interview"]
 description: "React 面试知识点汇总"
-author: "youting"
+author: "xuyou"
 tags: ["interview"]
 ---
 

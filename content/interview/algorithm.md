@@ -7,7 +7,7 @@ toc: false
 keywords: ["interview"]
 description: "一些算法"
 tags: ["interview"]
-author: "youting"
+author: "xuyou"
 ---
 
 ## 排序算法
