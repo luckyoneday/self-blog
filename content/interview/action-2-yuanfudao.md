@@ -5,7 +5,7 @@ lastmod: 2021-05-23T08:24:12+08:00
 draft: false
 toc: true
 keywords: ["interview"]
-description: "猿辅导一面"
+description: "猿辅导"
 tags: ["interview"]
 author: "youting"
 ---
@@ -13,6 +13,8 @@ author: "youting"
 ### 1. 介绍项目
 
 讲一下项目难点，以及怎么解决。
+
+项目问的比较多，包括 webview 通信、优化和手势缩放。
 
 ### 2. setState 是同步还是异步
 
