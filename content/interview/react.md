@@ -7,7 +7,6 @@ toc: true
 keywords: ["interview"]
 description: "React 面试知识点汇总"
 author: "xuyou"
-tags: ["interview"]
 ---
 
 ## react fiber 解决了什么问题

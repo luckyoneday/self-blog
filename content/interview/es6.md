@@ -6,7 +6,6 @@ draft: false
 toc: true
 keywords: ["interview"]
 description: "ES6及新特性相关"
-tags: ["interview"]
 author: "xuyou"
 ---
 

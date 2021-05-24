@@ -6,7 +6,6 @@ draft: false
 toc: true
 keywords: ["interview"]
 description: "Typescript 和 Redux 的面试题"
-tags: ["interview"]
 author: "xuyou"
 ---
 
