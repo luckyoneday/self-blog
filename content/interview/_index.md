@@ -6,7 +6,7 @@ weight: 50
 
 - [JS 相关](./js)
 
-- [TS 相关](./ts)
+- [TS 相关](./ts-redux)
 
 - [ES6 相关](./es6)
 

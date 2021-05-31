@@ -75,6 +75,13 @@ css 中使用 @media 查询，可以针对不同的媒体类型定义不同的�
 }
 ```
 
+## css 隐藏元素的方式
+
+- `opacity: 0`：影响布局、响应交互
+- `visibility: hidden`：影响布局，不响应交互
+- `display: none`：元素不可见
+- `position: absolute; top: -9999px; left: -9999px`：不影响布局，响应交互
+
 ## 居中布局
 
 块状元素：
