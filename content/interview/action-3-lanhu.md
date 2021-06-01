@@ -11,11 +11,9 @@ author: "xuyou"
 
 ### 1. 介绍项目
 
-项目难点
-
-sketch 怎么通信
-
-websocket
+- 项目难点
+- sketch 怎么通信
+- websocket
 
 ### 2. 介绍 React Hooks
 

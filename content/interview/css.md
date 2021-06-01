@@ -48,6 +48,42 @@ author: "xuyou"
 - rem：相对长度单位，相对的是 `HTML` 根元素 `font-size` 的值；
 - vh、vw：相对于窗口宽高，100vw 代表满宽，100vh 表示满高；
 
+## css 隐藏元素的方式
+
+- `opacity: 0`：影响布局、响应交互
+- `visibility: hidden`：影响布局，不响应交互
+- `display: none`：元素不可见
+- `position: absolute; top: -9999px; left: -9999px`：不影响布局，响应交互
+
+## 两栏布局
+
+- 左边块使用 `float`，右边块使用 `margin`，父使用 `overflow: hidden` 触发 BFC；
+- 左边块使用 `absolute`；
+- 父使用 `display: flex`，左边块固定宽度，右边使用 `flex：1`；
+- 父使用 `display: grid; grid-template-columns: 200px auto`
+
+## 三栏布局
+
+- 两边使用 `float`，中间使用 `margin`：需要将 `main` 放在最末；
+- 两边使用 `absolute`，中间使用 `margin`；
+- 父使用 `display: flex; justify-content: space-between` ，中间使用 `flex: 1`，`main` 需要在中间；
+- 父使用 `display: grid; grid-template-columns: 100px auto 100px; grid-template-areas: 'a b c'`，`main` 可以在中间，通过 `grid-areas: b` 将 `main` 定位在中间；
+
+## 居中布局
+
+块状元素：
+
+- 利用 `position` + `margin: auto`：需要子元素 `top/right/bottom/left` 设为相同的值，然后使用 `margin: auto`；
+- 利用 `position` + `margin: 负值`：需要子元素 `top: 50%; left: 50%; margin-left: 负一半自身宽度; margin-top: 负一半自身高度`，需要知道自身宽高；
+- 利用 `position` + `transform`：需要子元素 `top: 50%; left: 50%; transform: translate(-50%, -50%)`，不需要知道自身宽高；
+- table 布局：父元素使用 `display: table-cell;text-align: center;vertical-align: middle` ，子元素使用 ` display: inline-block`；
+- flex 布局：父元素使用 `display: flex;justify-content: center;align-items: center`；
+- grid 布局：父元素使用 `display: grid;align-items: center;justify-content: center`
+
+行内元素：
+
+- `text-align: center`; `height` = `line-height`
+
 ## 响应式布局
 
 响应式网站设计是一种网络页面设计布局，页面的设计与开发应当根据用户行为以及设备环境（系统平台、屏幕尺寸、屏幕定向等）进行相应的响应和调整。
@@ -74,28 +110,6 @@ css 中使用 @media 查询，可以针对不同的媒体类型定义不同的�
   }
 }
 ```
-
-## css 隐藏元素的方式
-
-- `opacity: 0`：影响布局、响应交互
-- `visibility: hidden`：影响布局，不响应交互
-- `display: none`：元素不可见
-- `position: absolute; top: -9999px; left: -9999px`：不影响布局，响应交互
-
-## 居中布局
-
-块状元素：
-
-- 利用 `position` + `margin: auto`：需要子元素 `top/right/bottom/left` 设为相同的值，然后使用 `margin: auto`；
-- 利用 `position` + `margin: 负值`：需要子元素 `top: 50%; left: 50%; margin-left: 负一半自身宽度; margin-top: 负一半自身高度`，需要知道自身宽高；
-- 利用 `position` + `transform`：需要子元素 `top: 50%; left: 50%; transform: translate(-50%, -50%)`，不需要知道自身宽高；
-- table 布局：父元素使用 `display: table-cell;text-align: center;vertical-align: middle` ，子元素使用 ` display: inline-block`；
-- flex 布局：父元素使用 `display: flex;justify-content: center;align-items: center`；
-- grid 布局：父元素使用 `display: grid;align-items: center;justify-content: center`
-
-行内元素：
-
-- `text-align: center`; `height` = `line-height`
 
 ## CSS3 新增的特性
 
@@ -273,6 +287,7 @@ animation-fill-mode：动画填充模式，backwards、forwards
 
 - [BFC](https://codesandbox.io/s/bfc-vvvlp)
 - [居中](https://codesandbox.io/s/center-d8l0c)
+- [两栏 & 三栏布局](https://codesandbox.io/s/23-column-9kgmc)
 - [动画](https://codesandbox.io/s/animate-g4u4h)
 - [flex](https://codesandbox.io/s/flex-ure85)
 - [grid](https://codesandbox.io/s/grid-8fb3v)

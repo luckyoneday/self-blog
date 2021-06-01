@@ -1,8 +1,8 @@
 ---
 title: "fifth"
-date: 2021-05-25T11:47:45+08:00
-lastmod: 2021-05-25T11:47:45+08:00
-draft: true
+date: 2021-05-31T15:47:45+08:00
+lastmod: 2021-05-31T15:47:45+08:00
+draft: false
 toc: true
 keywords: ["interview"]
 description: "京东"
@@ -67,3 +67,19 @@ var func = arr.reduce((pre, cur) => cur(pre));
 
 func();
 ```
+
+## 二面
+
+### 1. 实现一个旋转有序数组搜索
+
+先从有序数组搜索开始写，然后写旋转有序数组搜索。
+
+### 2. 数组 flat
+
+### 3. js 对象扁平
+
+### 4. 介绍项目、有什么难点
+
+- sketch 通信
+- canvas 怎么适配屏幕：可能是想让说使用 `window.devicePixelRatio` 放大再缩小一下。。。
+- websocket 服务端怎么向客户端发消息

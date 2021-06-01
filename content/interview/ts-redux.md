@@ -135,9 +135,9 @@ export default Person1;
 
 {{% /admonition %}}
 
-## 函数重载
-
 ## 泛型
+
+- [泛型](../../daily/28-typescript-generics/)
 
 # Redux
 
