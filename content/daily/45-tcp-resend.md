@@ -6,7 +6,7 @@ draft: false
 toc: true
 keywords: ["daily"]
 description: "TCP"
-tags: ["JavaScript", "React"]
+tags: ["HTTP"]
 author: "youting"
 ---
 
