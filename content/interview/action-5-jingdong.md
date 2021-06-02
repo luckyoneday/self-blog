@@ -83,3 +83,12 @@ func();
 - sketch 通信
 - canvas 怎么适配屏幕：可能是想让说使用 `window.devicePixelRatio` 放大再缩小一下。。。
 - websocket 服务端怎么向客户端发消息
+
+## 三面
+
+### 自动化测试流程、项目收益
+
+### 介绍近一年自己有成长的地方或者攻克的难点
+
+- electron 通信、sketch 通信
+- 服务端渲染

@@ -23,6 +23,27 @@ author: "xuyou"
 
 ### 反转链表
 
+{{% admonition type="info" title="反转链表" details="true" %}}
+
+```js
+function reverse(head) {
+  let prev = null,
+    cur = head;
+
+  while (cur) {
+    const temp = cur.next;
+
+    cur.next = prev;
+    prev = cur;
+    cur.next = temp;
+  }
+
+  return prev;
+}
+```
+
+{{% /admonition %}}
+
 ### 快慢指针算法
 
 - 可用来判断链表是否有环，和环入口在哪里
@@ -144,4 +165,6 @@ var postorderTraversal = function (root) {
 
 分为深度优先（DFS）和广度优先（BFS）。
 
-## 动态规划
+[DFS](https://leetcode-cn.com/problems/binary-tree-paths/)
+
+[BFS](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
