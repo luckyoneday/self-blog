@@ -19,13 +19,13 @@ author: "xuyou"
 
 ### electron
 
-electron 通信：看自己的博客
+[electron 通信](../../post/5-electron-communication/)
 
 ### webSocket
 
 ### sketch
 
-sketch 通信：看自己的博客
+[sketch 通信](../../post/4-sketch-plugin/)
 
 ### drag & drop
 

@@ -17,4 +17,4 @@ author: "xuyou"
 
 ---
 
-- [参考资源汇总](./resources)
+- [参考资源汇总](../resources)
