@@ -343,19 +343,19 @@ console.log(p1.play, p2.play); // [1, 2, 3, 4]
 
 {{% admonition "info" "寄生式继承"  %}}
 
-在上述的继承方式上进行优化，增强浅拷贝能力。
+在上述的继承方式上进行优化，依托一个内部对象生成一个新对象。
 
 ```ts
-function clone(original) {
-  const clonedItem = Object.create(original);
-  clonedItem.getPlay = function () {
+function Child(original) {
+  const obj = Object.create(original);
+  obj.__proto__.getPlay = function () {
     return this.play;
   };
-  return clonedItem;
+  return obj;
 }
 ```
 
-没啥变化啊这样写。
+没啥变化啊这样写，还是会引用类型共享。
 
 {{% /admonition %}}
 

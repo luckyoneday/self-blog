@@ -14,3 +14,7 @@ author: "xuyou"
 - [third](../action-3-lanhu)
 - [fourth](../action-4-haoweilai)
 - [fifth](../action-5-jingdong)
+
+---
+
+- [参考资源汇总](./resources)

@@ -6,7 +6,7 @@ draft: false
 keywords: ["daily"]
 description: "关于为什么setState是异步的"
 author: "youting"
-tags: [“React"]
+tags: ["React"]
 ---
 
 > 原 issue 地址: https://github.com/facebook/react/issues/11527#issuecomment-360199710

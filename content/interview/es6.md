@@ -304,5 +304,5 @@ console.log(r); //>>[ 'I', 'love', 'coffe', '1891' ]
 
 ## ES2020
 
-- Optional chaining 可选链操作符：`a?.b?.c`
+- Optional chaining 可选链操作符：`a?.b?.c`，只会验证对象是否为 `null` 或 `undefined`，不会对所有 Falsy 值做兼容。
 - Nullish coalescing Operator 空值处理：左侧为 `undefined` 或 `null` 就返回右边 `a ?? {}`

@@ -11,6 +11,18 @@ author: "xuyou"
 
 # typescript
 
+## 基础类型
+
+`number`、`boolean`、`string`、`array`、`tuple`、`enum`、`any`、`void`、`null`、`undefined`、`never`、`object`
+
+## 泛型
+
+- [泛型](../../daily/28-typescript-generics/)
+
+## 索引类型
+
+- [索引类型](../../daily/29-typescript-index-types/)
+
 ## interface 和 type 的区别
 
 {{% admonition "info" "1.都可以用来描述对象或函数的类型，但语法不同" %}}
@@ -103,14 +115,14 @@ const test: StatusMap = {
 };
 
 /**
-报错 
-接口中的计算属性名称必须引用必须引用类型为文本类型或 "unique symbol" 的表达式。
-计算属性名的类型必须为 "string"、"number"、"symbol" 或 "any"。
-“Status”仅表示类型，但在此处却作为值使用。
+  报错 
+  接口中的计算属性名称必须引用必须引用类型为文本类型或 "unique symbol" 的表达式。
+  计算属性名的类型必须为 "string"、"number"、"symbol" 或 "any"。
+  “Status”仅表示类型，但在此处却作为值使用。
 **/
-//interface StatusMap2 {
-//  [key in Status]: string
-//}
+// interface StatusMap2 {
+//   [key in Status]: string
+// }
 ```
 
 {{% /admonition %}}
@@ -134,10 +146,6 @@ export default Person1;
 ```
 
 {{% /admonition %}}
-
-## 泛型
-
-- [泛型](../../daily/28-typescript-generics/)
 
 # Redux
 

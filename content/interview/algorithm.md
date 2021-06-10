@@ -165,6 +165,6 @@ var postorderTraversal = function (root) {
 
 分为深度优先（DFS）和广度优先（BFS）。
 
-[DFS](https://leetcode-cn.com/problems/binary-tree-paths/)
+[DFS](https://codesandbox.io/s/tree-257-oxd6e)
 
-[BFS](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
+[BFS](https://codesandbox.io/s/tree-102-q52xr)
