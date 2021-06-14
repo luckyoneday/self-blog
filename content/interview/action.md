@@ -9,12 +9,9 @@ description: "面试实战"
 author: "xuyou"
 ---
 
-- [first](../action-1-banyu)
-- [second](../action-2-yuanfudao)
-- [third](../action-3-lanhu)
-- [fourth](../action-4-haoweilai)
-- [fifth](../action-5-jingdong)
-
----
-
-- [参考资源汇总](../resources)
+- [first](../action-1-banyu/)
+- [second](../action-2-yuanfudao/)
+- [third](../action-3-lanhu/)
+- [fourth](../action-4-haoweilai/)
+- [fifth](../action-5-jingdong/)
+- [sixth](../action-6-eleme/)

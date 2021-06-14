@@ -109,5 +109,6 @@ readystatechange， loading 状态 -> readystatechange， interactive 状态 ->D
 ## 参考资料
 
 - [深入浅出浏览器渲染原理](https://github.com/ljianshu/Blog/issues/51)
+- [图解浏览器的基本工作原理](https://zhuanlan.zhihu.com/p/47407398)
 - [回流与重绘](https://juejin.cn/post/6844903942137053192)
 - [你真的了解回流和重绘吗](https://segmentfault.com/a/1190000017329980)
