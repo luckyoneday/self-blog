@@ -38,7 +38,7 @@ author: "xuyou"
 
 ### 7. HTTP 缓存
 
-- 强缓存资源失效了怎么办，ummmmmm...
+- 怎么让强制缓存资源失效，ummmmmm...
 
 ### 8. HTTPS
 
