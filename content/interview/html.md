@@ -106,6 +106,25 @@ readystatechange， loading 状态 -> readystatechange， interactive 状态 ->D
 - 触发 CSS3 硬件加速，可以使用 `transform`、`opacity`、`filters`，这些效果不会引起回流重绘；
 - 避免使用 `table` 布局，`table` 中每个元素的大小以及内容的改动，都会导致整个 `table` 的重新计算；
 
+## 浏览器的多架构进程
+
+默认新开一个 tab 页面就新建一个进程，所以单个 tab 页面崩溃不会影响到整个浏览器；同样，第三方插件崩溃也不会影响到整个浏览器。
+
+浏览器进程包括：
+
+- 主进程 browser process
+- 第三方插件进程 plugin process
+- GPU 进程 GPU process
+- 渲染进程 renderer process
+
+而浏览器的渲染进程是多线程的，包括多个主要线程：
+
+- GUI 渲染线程：负责渲染浏览器界面，解析 HTML、CSS、构建 DOM 树和 render 树、重绘或回流等；该线程与 JS 引擎线程是互斥的；
+- JS 引擎线程：负责处理 JavaScript 脚本，运行代码；
+- 事件触发线程：用来控制事件循环；
+- 定时触发器线程
+- 异步 http 请求线程
+
 ## 参考资料
 
 - [深入浅出浏览器渲染原理](https://github.com/ljianshu/Blog/issues/51)

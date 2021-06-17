@@ -2,7 +2,7 @@
 title: "资源汇总"
 date: 2021-05-07T17:58:27+08:00
 lastmod: 2021-05-07T17:58:27+08:00
-draft: true
+draft: false
 toc: true
 keywords: ["interview"]
 description: "一些资源"

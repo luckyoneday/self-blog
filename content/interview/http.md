@@ -164,19 +164,6 @@ Cookie 和 Session
 
 ### 安全
 
-{{% admonition info "CSRF：跨站请求伪造" %}}
-
-是劫持受信任用户向服务器发送非预期请求的攻击方式。
-
-防范：
-
-- Get 请求不对数据进行修改
-- 一些关键步骤设置验证码
-- 检测 Referrer
-- 设置 token，在某些请求设置 token，某些操作验证 token，token 有有效期
-
-{{% /admonition %}}
-
 {{% admonition info "XSS：跨站脚本攻击" %}}
 
 攻击者在网站注入恶意脚本对客户端网页进行篡改，从而在用户浏览脚本时对用户浏览器进行控制或获取用户隐私数据。
@@ -191,6 +178,19 @@ Cookie 和 Session
   - 只允许加载本站资源 `Content-Security-Policy: default-src 'self'`
   - 只允许加载 HTTPS 协议图片 `Content-Security-Policy: img-src https://\*`
 - `cookie` 设置 `HttpOnly`
+
+{{% /admonition %}}
+
+{{% admonition info "CSRF：跨站请求伪造" %}}
+
+是劫持受信任用户向服务器发送非预期请求的攻击方式。
+
+防范：
+
+- Get 请求不对数据进行修改
+- 一些关键步骤设置验证码
+- 检测 Referrer
+- 设置 token，在某些请求设置 token，某些操作验证 token，token 有有效期
 
 {{% /admonition %}}
 
