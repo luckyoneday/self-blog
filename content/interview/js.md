@@ -74,10 +74,10 @@ function examNew(fn, ...args) {
 
 ```js
 Function.prototype.wcall = function (thisArg, ...args) {
-  const handledThis = thisArg == null ? window : Object(thisArg);
+  const handledThis = Object(thisArg) || window;
 
   // 在传入的 thisArg 上添加一个方法并调用，将 this 隐式绑定。
-  const tempMethod = "tempMethod";
+  const tempMethod = Symbol();
   handledThis[tempMethod] = this;
 
   const result = handledThis[tempMethod](...args);
@@ -95,8 +95,8 @@ Function.prototype.wcall = function (thisArg, ...args) {
 
 ```js
 Function.prototype.wapply = function (thisArg, args) {
-  const handledThis = thisArg == null ? window : Object(thisArg);
-  const tempMethod = "tempMethod";
+  const handledThis = Object(thisArg) || window;
+  const tempMethod = Symbol();
 
   handledThis[tempMethod] = this;
   const result = handledThis[tempMethod](...args);
@@ -112,7 +112,7 @@ Function.prototype.wapply = function (thisArg, args) {
 
 ```js
 Function.prototype.wbind = function (thisArg, ...args) {
-  const handledThis = thisArg == null ? window : Object(thisArg);
+  const handledThis = Object(thisArg) || window;
 
   const context = this;
 

@@ -357,25 +357,37 @@ newArr = oldArr.slice();
 
 ### 深拷贝
 
+> `JSON.parse(JSON.stringify(obj))`
+>
+> - `JSON.parse/JSON.stringify` 会忽略 `undefined` `symbol`
+> - JSON 格式字符串不支持 `Function`，在序列化的时候会自动删除
+> - `Map` `Set` `RegExp` `Date` `ArrayBuffer` 和其他内置类型在进行序列化时会丢失
+> - 不支持循环引用
+
+需要自己实现 deepClone，递归调用
+
 ```js
-// JSON.parse/JSON.stringify
-JSON.parse(JSON.stringify(obj));
-
-// 递归实现深拷贝
 function deepClone(obj) {
-  const result = Array.isArray(obj) ? [] : {};
-  const isObj = (obj) => obj && typeof obj === "object";
-  if (!isObj(obj)) return {};
+  const map = new WeakMap();
 
-  for (let key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      if (isObj(obj[key])) {
-        result[key] = deepClone(obj[key]);
-      } else {
-        result[key] = obj[key];
+  function deep(obj) {
+    let result = Array.isArray(obj) ? [] : {};
+
+    if (map.has(obj)) return map.get(obj);
+    map.set(obj, result);
+
+    for (let k in obj) {
+      if (obj.hasOwnProperty(k)) {
+        if (typeof obj[k] === "object") {
+          result[k] = deep(obj[k]);
+        } else result[k] = obj[k];
       }
     }
+
+    return result;
   }
+
+  const result = deep(obj);
   return result;
 }
 ```

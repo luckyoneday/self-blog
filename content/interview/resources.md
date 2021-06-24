@@ -21,8 +21,6 @@ author: "xuyou"
 
 [electron 通信](../../post/5-electron-communication/)
 
-### webSocket
-
 ### sketch
 
 [sketch 通信](../../post/4-sketch-plugin/)

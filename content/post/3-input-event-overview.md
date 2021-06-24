@@ -121,7 +121,7 @@ const handleCompositionEnd = (e) => {
 };
 ```
 
-为了让这个事件起作用，（`compositionend` 事件在 `change）` 之后)，那就需要在 `onChange` 的时候判断不是复合输入才替换字符串，那怎么识别是不是符合输入呢！其实在 `onchange` 、`onkeydown`、`onkeyup` 等事件判断是否是 composition event 的依据除了 `keyCode === 229` ，还有个 `isComposing` 属性，也可以感知到是否是 composition event，即：
+为了让这个事件起作用，（`compositionend` 事件在 `change` 之后)，那就需要在 `onChange` 的时候判断不是复合输入才替换字符串，那怎么识别是不是符合输入呢！其实在 `onchange` 、`onkeydown`、`onkeyup` 等事件判断是否是 composition event 的依据除了 `keyCode === 229` ，还有个 `isComposing` 属性，也可以感知到是否是 composition event，即：
 
 ```js
 const handleChange = (e) => {
