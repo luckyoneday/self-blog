@@ -392,3 +392,31 @@ console.log(n1.getName());
 ```
 
 {{% /admonition %}}
+
+## 异常
+
+### 错误类型
+
+ECMA-262 中定义了下列 7 种错误类型
+
+- `Error`：错误的基类，其他错误都继承自该类型
+- `EvalError`：Eval 函数执行异常
+- `RangeError`：数组越界
+- `ReferenceError`：尝试引用一个未被定义的变量时，将会抛出此异常
+- `SyntaxError`：语法解析不合理例如有中文符号，`Uncaught SyntaxError: Invalid or unexpected token`
+- `TypeError`：类型错误，`TypeError: Cannot read property 'name' of undefined`
+- `URIError`：以一种错误的方式使用全局 URI 处理函数而产生的错误
+
+### 如何捕获
+
+- `window.onerror` 无法捕获静态资源异常。
+- `addEventListener("error")` 当资源（如 img 或 script）加载失败，加载资源的元素会触发一个 `error` 事件，并执行该元素上的 `onerror()` 处理函数。这些 `error` 事件不会向上冒泡到 `window`，但可以在捕获阶段被捕获。因此如果要全局监听资源加载错误，需要在 **捕获阶段** 捕获事件。
+- `addEventListener('unhandledrejection')` 可以用来捕获未 `catch` 的 `promise` 的错误。
+- 在跨域脚本上配置 `crossorigin="anonymous"` 捕获跨域脚本错误。
+- 封装 `fetch`、 axios 使用 `interceptors` 拦截返回等。
+- React 使用 `ErrorBoundary` 带 `componentDidCatch` 生命周期，但是无法捕获下列异常
+  - 事件处理器
+  - 异步代码
+  - 服务端的渲染代码
+  - 在 error boundaries 区域内的错误
+- `try {} catch {}`

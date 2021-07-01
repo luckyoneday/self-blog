@@ -68,6 +68,9 @@ canvas 的画布大小，使用的是 canvas.width 和 canvas.height；要设置
 
 ### react
 
+- [React 的秘密](https://github.com/neroneroffy/react-source-code-debug)
+- [一文吃透 react 事件系统原理](https://juejin.cn/post/6955636911214067720)
+
 - [react 技术揭秘](https://react.iamkasong.com/)
 - [react 源码 - 掘金](https://juejin.cn/post/6859528127010471949)
 - [人人都能读懂的 react 源码解析](https://xiaochen1024.com/article_item/600ac4384bf83f002edaf54a)
@@ -86,8 +89,8 @@ canvas 的画布大小，使用的是 canvas.width 和 canvas.height；要设置
 ### 纯面试题
 
 - [前端面试之道](https://doc.xuwenliang.com/docs/frontend/2731)
-- [字节最爱考的算法题](https://juejin.cn/post/6947842412102287373)
-- [字节最爱考的面试题：JavaScript 基础](https://juejin.cn/post/6934500357091360781)
+- [字节面试题](https://juejin.cn/post/6866082181455249422)
+- [手写题](https://juejin.cn/post/6855129007852093453)
 
 ## 最后的最后
 
