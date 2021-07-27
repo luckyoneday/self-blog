@@ -98,3 +98,7 @@ function Node(val) {
   this.right = null;
 }
 ```
+
+---
+
+一面挂
