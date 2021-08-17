@@ -1,7 +1,7 @@
 ---
 title: "React Hooks 持续踩坑"
-date: 2021-04-08T20:37:40+08:00
-lastmod: 2021-04-08T20:37:40+08:00
+date: 2021-08-06T20:37:40+08:00
+lastmod: 2021-08-06T20:37:40+08:00
 draft: true
 keywords: ["React"]
 description: "React Hooks 的一些注意事项"
@@ -16,6 +16,28 @@ author: "youting"
 ## 怎么理解 rules of Hooks
 
 ## React 函数中怎么使用防抖和节流
+
+## useEffect 的返回值
+
+如果在 useEffect 中写成如下形式，会发现控制台有警告信息：`useEffect function must return a cleanup function or nothing. Promises and useEffect(async () => ...) are not supported, but you can call an async function inside an effect.`
+
+```js
+useEffect(async () => {
+  const result = await axios("xxx");
+}, []);
+```
+
+useEffect 的返回值可以是清理函数或者不返回，不可以是 Promise，所以可以这样写：
+
+```js
+useEffect(() => {
+  const fetchData = async () => {
+    const result = await axios("xxx");
+  };
+
+  fetchData();
+}, []);
+```
 
 ## 参考链接
 
