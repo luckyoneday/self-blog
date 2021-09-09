@@ -49,7 +49,19 @@ Taro 限制不能使用 `navigateTo` 跳转到 tabBar 页面，因此只能使�
 
 ## 小程序登录
 
+图 copy from 官网
+
 ![登录流程](https://res.wx.qq.com/wxdoc/dist/assets/img/api-login.2fcc9f35.jpg)
+
+微信官方提供了两种标识：
+
+- `OpenId` 是一个用户对于一个小程序/公众号的标识，开发者可以通过这个标识识别用户
+- `UnionId` 是一个用户对于同主体微信小程序/公众号/APP 的标识，开发者需要在微信开放平台下绑定相同账号的主体。开发者可以通过 `UnionId`，实现多个小程序、公众号、甚至 APP 之间的数据互通。
+
+微信官方鼓励开发者在不骚扰用户的情况下合理获得 `unionId`，而仅在必要时才向用户弹窗申请使用昵称头像，从而衍生出 **静默登录** 和 **用户登录** 两种概念。
+
+- `wx.login` 是静默、不必授权的。
+- `wx.getUserInfo` 获取数据时，新版本是 `wx.getUserProfile` 接口。如果用户已授权会返回用户信息；未授权会弹出授权弹窗，同意授权会返回用户信息，拒绝授权会调用失败。
 
 ## Taro 自定义导航栏
 
@@ -62,9 +74,11 @@ Taro 限制不能使用 `navigateTo` 跳转到 tabBar 页面，因此只能使�
 ## and last
 
 - **都是引用本地的图片，为什么有的不展示？** `<Text>` 组件中不能放置组件，只能放置字符串。意味着如果 `<Image>` 组件放在 `<Text>` 组件内部，是显示不出来的。
-- tabBar 底部让出安全距离： `padding-bottom: constant(safe-area-inset-bottom); padding-bottom: env(safe-area-inset-bottom)`
+- **tabBar 底部让出安全距离：** `padding-bottom: constant(safe-area-inset-bottom); padding-bottom: env(safe-area-inset-bottom)`。
+- 小程序底部有 `position: fixed` 元素时，页面需要让出位置，设置 `padding-bottom` 时在 pc 端小程序打开会失效，设置 `margin-bottom` 时 IOS 端小程序会失效，可以在外层底部加一个 `1px` 的块。
 - 小程序使用 `background-image` 设置背景图需要使用网络地址，或者将图片转为 base64；想使用本地图片地址的话可以使用 `Image` 组件并将 `z-index` 置为 -1。
 - 若是企业微信小程序模式下看不到自定义 tabBar，需要将调试基础库版本调到 2.8.3 或以上~
+- 如果 `package.json` 中没有的包在 `package-lock.json` 中有，（别的包的 deps ），引用的话在 pc 端企业微信打开 maybe 会白屏，记得安装~
 
 ## 参考
 
