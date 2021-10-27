@@ -2,7 +2,7 @@
 title: "thinking and overview"
 date: 2021-06-19T08:07:08+08:00
 lastmod: 2021-06-19T08:07:08+08:00
-draft: false
+draft: true
 toc: true
 keywords: ["daily"]
 description: "关于离职"
