@@ -135,10 +135,10 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
     repo = ""               # The repo to store comments
 
   [params.gitalk]           # Gitalk is a comment system based on GitHub issues. see https://github.com/gitalk/gitalk
-    owner = ""              # Your GitHub ID
-    repo = ""               # The repo to store comments
-    clientId = ""           # Your client ID
-    clientSecret = ""       # Your client secret
+    owner = "luckyoneday"              # Your GitHub ID
+    repo = "luckyoneday.github.io"               # The repo to store comments
+    clientId = "e4834619e7a306a7137b"           # Your client ID
+    clientSecret = "0931ad0ebb2cf3c20900daea5f065b73ee842bac"       # Your client secret
 
   # Valine.
   # You can get your appid and appkey from https://leancloud.cn
