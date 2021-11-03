@@ -50,20 +50,6 @@
         </div>
       {{- end -}}
 
-
-      {{ if .Params.react -}}
-        <div>
-          {{- if .Site.Params.publicCDN.enable }}
-            {{ .Site.Params.publicCDN.react | safeHTML }}
-            {{ .Site.Params.publicCDN.reactDom | safeHTML }}
-            {{ .Site.Params.publicCDN.babel | safeHTML }}
-          {{- else -}}
-            <script type="text/javascript" src="{{ "lib/react/react@16.13.1.min.js" | relURL }}"></script>
-            <script type="text/javascript" src="{{ "lib/react/react-dom@16.13.1.min.js" | relURL }}"></script>
-            <script type="text/javascript" src="{{ "lib/babel@6.26.0.min.js" | relURL }}"></script>
-          {{- end -}}
-        </div>
-      {{- end }}
     </footer>
   </article>
 {{- end }}
