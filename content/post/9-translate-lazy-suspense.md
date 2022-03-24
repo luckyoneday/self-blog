@@ -15,7 +15,7 @@ author: "xuyou"
 
 <!--more-->
 
-React 18 将包括对服务端渲染（SSR）性能的架构改进。最重要的新的 API 是 `renderToPipeableStream`。可以在[这里](https://github.com/reactwg/react-18/discussions/22)看到相关的 API 介绍。主要涉及到的之前的 API 是 `<Suspense>`。本篇是对新架构设计以及它解决的问题的介绍。
+React 18 推出了对服务端渲染（SSR）性能的架构改进。最重要的新的 API 是 `renderToPipeableStream`。可以在[这里](https://github.com/reactwg/react-18/discussions/22)看到相关的 API 介绍。主要涉及到的现存的 API 是 `<Suspense>`。本篇是对新架构设计以及它解决的问题的介绍。
 
 ## 太长不看版
 
@@ -23,14 +23,14 @@ React 18 将包括对服务端渲染（SSR）性能的架构改进。最重要�
 
 SSR 通常有以下几步：
 
-1. 在服务端，获取 app 所需要的数据；
+1. 在服务端，获取应用所需要的数据；
 2. 在服务端，生成 HTML 并返回；
 3. 在客户端，加载应用所需 JavaScript 代码；
-4. 在客户端，把服务端生成的 HTML 与 JavaScript 逻辑结合（即 “hydration”）。
+4. 在客户端，把服务端生成的 HTML 与 JavaScript 逻辑结合（即 “hydration”，水合作用）。
 
-重点在于 **每一步需要在上一步完成之后才可以开始**。所以当某些部分比剩余部分逻辑慢的时候，就会影响整个应用加载的效率。
+重点在于 **每一步需要在上一步完成之后才可以开始**。所以当某些部分加载比较慢的时候，就会影响整个应用加载的效率。
 
-React 18 允许我们使用 `<Suspense>` **将应用分成独立的单元** ，这些单元可以单独完成这些步骤而且不会影响到应用的其他部分。因此用户可以快速看到应用的内容并且与之交互。即逻辑最慢的部分不会“拖慢”速度快的部分。这里有个[demo](https://codesandbox.io/s/kind-sammet-j56ro?file=/src/App.js)。
+React 18 允许我们使用 `<Suspense>` **将应用分成独立的单元** ，这些单元可以单独完成这些步骤而且不会影响到应用的其他部分。因此用户可以快速看到应用的内容并且与之交互。即逻辑最慢的部分不会“拖慢”速度快的部分。这里有个[demo](https://codesandbox.io/s/kind-sammet-j56ro?file=/src/App.js)演示了这一点。
 
 ## 什么是 SSR
 
@@ -60,19 +60,19 @@ React 18 允许我们使用 `<Suspense>` **将应用分成独立的单元** ，�
 
 SSR 不会使应用程序更快地可交互，它只是尽快展示出应用无法交互的版本，所以用户可以在 JS 代码加载的时候看到静态页面。这个技巧对于网络连接不佳的用户来说体验有很大的不同，并提高了整体的感知性能。由于更容易索引和更快的速度，它还可以帮助我们进行搜索引擎排名。
 
-> 提示：不要混淆 SSR 和 Server Components。Server Components 是一个实验中的特性，大概率不会成为初始化 React 18 中的一部分，可以在[这里](https://reactjs.org/blog/2020/12/21/data-fetching-with-react-server-components.html)看到更多关于 Server Components 的内容。 Server Components 是 SSR 的补充，将成为推荐的数据获取方法的一部分，但这篇文章不涉及到相关知识。
+> 提示：不要混淆 SSR 和 Server Components。Server Components 是一个实验中的特性，大概率不会成为 React 18 初始版本中的一部分，可以在[这里](https://reactjs.org/blog/2020/12/21/data-fetching-with-react-server-components.html)看到更多关于 Server Components 的内容。 Server Components 是 SSR 的补充，将成为推荐的数据获取方法的一部分，但这篇文章不涉及到相关知识。
 
 ## 当前的 SSR 存在哪些问题
 
 ### 需要在展示页面之前获取所有数据
 
-目前我们了解到 SSR 的一个问题是不允许组件“等待数据”。在渲染页面之前，需要先获取到所有的数据。例如我们想渲染一篇有评论的博文，评论数据自然是很重要的，所以我们想要在服务端的 HTML 返回中就包括评论组件。但是如果数据库或 API 层较慢，我们就需要从中做选择。可以选择服务端生成的 HTML 中不包括评论组件，那用户就只能在 js 资源加载后看到评论信息。或者就选择服务端生成的 HTML 中包括评论组件，页面的导航栏、侧边栏就都需要等到评论数据返回才能渲染。
+目前我们了解到 SSR 的一个问题是不允许组件“等待数据”。在渲染页面之前，需要先获取到所有的数据。例如我们想渲染一篇带评论的博文，评论数据自然是很重要的，所以我们想要在服务端的 HTML 返回中就包括评论组件。但是如果数据库或 API 层较慢，我们就需要从中做选择。可以选择服务端生成的 HTML 中不包括评论组件，那用户就只能在 js 资源加载后看到评论信息。或者是选择服务端生成的 HTML 中包括评论组件，页面的导航栏、侧边栏就都需要等到评论数据返回才能渲染。
 
 ### 注水需要等待资源加载完成
 
 JavaScript 代码加载结束后，React 会开始给 HTML 绑定事件来使页面可交互。React 将在渲染组件时“遍历”服务器生成的 HTML，并将事件处理程序添加上去。为了使事件正确绑定到元素上，浏览器中组件生成的树必须与服务器生成的树匹配。造成的结果就是 **必须等待所有 JavaScript 加载结束，才能开始为其中任何一个组件添加事件绑定**。
 
-假设评论组件有非常复杂的交互逻辑，并且需要事件来加载相应的 JavaScript 代码。我们就又面临了两个选择：将评论内容在服务器生成 HTML，以便尽早向用户展示。但是因为只能一次性完成注水，所以在加载评论组件的代码之前，不能开始为导航栏、侧边栏和帖子内容添加交互响应。另一个选择就是可以做代码分割来进行分开加载，那就需要将评论内容从服务端渲染的 HTML 中移除。否则 React 将不知道如何处理这块 HTML 并在注水期间将其删除。
+假设评论组件有非常复杂的交互逻辑，并且需要事件来加载相应的 JavaScript 代码。我们就又面临了两个选择：将评论内容在服务器端生成 HTML，以便尽早向用户展示。但是因为只能一次性完成注水，所以在加载评论组件的代码之前，不能开始为导航栏、侧边栏和帖子内容添加交互响应。另一个选择就是可以做代码分割来进行分开加载，那就需要将评论内容从服务端渲染的 HTML 中移除。否则 React 将不知道如何处理这块 HTML 并在注水期间将其删除。
 
 ### 需要在注水结束后才可以进行交互
 
@@ -86,7 +86,7 @@ JavaScript 代码加载结束后，React 会开始给 HTML 绑定事件来使页
 
 这是因为有一个“瀑布”：服务端获取数据 -> 服务端生成 HTML -> 加载代码（客户端）-> 注水（客户端）。在应用程序的前一个阶段完成之前，下一个阶段都不能开始。这就是它效率低下的原因。我们的解决方案是将工作分开，以便我们 **可以为屏幕的一部分而不是整个应用程序执行每个阶段**。
 
-这并不是什么独特的想法：例如 [Marko](https://tech.ebayinc.com/engineering/async-fragments-rediscovering-progressive-html-rendering-with-marko/) 是一个以这种思路实现的 JavaScript 框架。挑战在于如何使这样的模式与 React 编程模型结合起来。React 一开始引入 `<Suspense>` 组件的作用是在客户端支持懒加载。但目标是其实是将其与服务器渲染集成并解决目前的已知问题。
+这并不是什么独特的想法：例如 [Marko](https://tech.ebayinc.com/engineering/async-fragments-rediscovering-progressive-html-rendering-with-marko/) 是一个以这种思路实现的 JavaScript 框架。挑战在于如何使这样的模式与 React 编程模型结合起来。React 一开始引入 `<Suspense>` 组件的作用是在客户端支持懒加载。但目标其实是与服务器渲染集成并解决目前的已知问题。
 
 让我们学习一下如何在 React 18 中使用 `<Suspense>` 来解决这些问题。
 
@@ -95,7 +95,7 @@ JavaScript 代码加载结束后，React 会开始给 HTML 绑定事件来使页
 Suspense 解锁了 React 18 中的两个主要 SSR 功能：
 
 - 服务端**流式 HTML**：可以使用新的 `renderToPipeableStream` API 替换 `renderToString` 来开启这个特性，像[这里](https://github.com/reactwg/react-18/discussions/22)描述的一样。
-- 客户端**选择性补水**：可以使用 [`createRoot`](https://github.com/reactwg/react-18/discussions/5) 并且将需要选择性注水的内容用 `<Suspense>` 包起来。
+- 客户端**选择性注水**：可以使用 [`createRoot`](https://github.com/reactwg/react-18/discussions/5) 并且将需要选择性注水的内容用 `<Suspense>` 包起来。
 
 要了解这些功能的作用以及它们如何解决上述问题，让我们回到我们的示例。
 
@@ -135,7 +135,7 @@ Suspense 解锁了 React 18 中的两个主要 SSR 功能：
 
 但是 React 18 给了我们新的可能性。我们可以把应用的一部分包在 `<Suspense>` 中。
 
-例如，我们可以包裹注释块并告诉 React 在组件准备好之前，应该显示 `<Spinner />` 组件：
+例如，我们可以包裹评论组件并告诉 React 在组件准备好之前，应该显示 `<Spinner />` 组件：
 
 ```jsx
 <Layout>
@@ -193,13 +193,13 @@ Suspense 解锁了 React 18 中的两个主要 SSR 功能：
 </script>
 ```
 
-结果，即使在 React 本身加载到客户端之前，迟到的评论 HTML 也会正常加载:
+这样，即使在 React 本身加载到客户端之前，迟到的评论 HTML 也会正常加载:
 
 ![non-interactive page](../../static-img/9-translate-suspense/3.png)
 
 这就解决了我们的第一个问题。现在我们不需要在展示任何元素前获取所有的 HTML。如果屏幕的某些部分拖慢了初始 HTML，我们不必在延迟所有 HTML 或将其从 HTML 中剔除之间做出选择。我们可以只允许该部分稍后在 HTML 流中渲染。
 
-**与传统的 HTML 流式传输不同，它不必按照自上而下的顺序发生**。例如，如果侧边栏需要一些数据，可以将其包装在 Suspense 中，React 将使用一个占位符并继续渲染帖子。然后，当侧边栏 HTML 准备就绪时，React 会将其与将其插入正确位置的 `<script>` 标签并一起流式传输 -- 即使帖子的 HTML 已经发送。React 不要求以任何特定顺序加载数据，我们指定 loading 图应该出现的位置，其余的由 React 计算。
+**与传统的 HTML 流式传输不同，它不必按照自上而下的顺序发生**。例如，如果侧边栏需要一些数据，可以将其包装在 Suspense 中，React 将使用一个占位符并继续渲染帖子。当侧边栏 HTML 准备就绪时，React 会将其与将其插入正确位置的 `<script>` 标签并一起流式传输 -- 即使帖子的 HTML 已经发送。React 不要求以任何特定顺序加载数据，我们指定 loading 图应该出现的位置，其余的由 React 计算。
 
 ### 在所有代码加载前开始注水
 
@@ -335,9 +335,9 @@ React 会记录此次点击，并且会提高评论组件注水的优先级因�
 
 React 准备了一个 [demo](https://codesandbox.io/s/kind-sammet-j56ro?file=/src/App.js) 来演示 Suspense 架构怎么生效，它可以人为减慢的，所以你可以在 server/delays.js 中调整延迟：
 
-- `API_DELAY` 让您可以延长在服务器上获取评论的时间，展示如何提前发送 HTML 的其余部分。
-- `JS_BUNDLE_DELAY` 让你延迟 `<script>` 标签的加载，展示评论小部件的 HTML 是如何“弹出”的，甚至在 React 和你的应用程序包被下载之前。
-- `ABORT_DELAY` 让您看到服务器“放弃”并在服务器上获取时间过长时将渲染移交给客户端。
+- `API_DELAY` 允许我们延长在服务器上获取评论的时间，展示如何提前发送 HTML 的其余部分。
+- `JS_BUNDLE_DELAY` 延迟 `<script>` 标签的加载，展示评论小部件的 HTML 是如何“弹出”的，甚至在 React 和你的应用程序包被下载之前。
+- `ABORT_DELAY` 在服务器上获取时间过长时将渲染移交给客户端。
 
 ## 结论
 
@@ -350,6 +350,6 @@ React 18 为 SSR 提供了两个主要的特性：
 
 - **在发送 HTML 之前，不再需要等待所有数据都在服务器上获取完。** 相反，一旦有足够的时间来显示应用程序的外壳，服务端就会开始发送 HTML，并在准备好 HTML 时流式传输其余的 HTML。
 - **不再需要等待所有 JavaScript 加载完毕才能开始补水。** 相反，我们可以将代码拆分与服务器渲染结合使用。服务器 HTML 将被保留，React 将在相关代码加载时对其进行水合。
-- **您不再需要等待所有组件水合开始与页面交互。** 相反，可以依靠选择性注水来确定与用户交互的组件的优先级，并尽早补水。
+- **您不再需要等待所有组件水合开始与页面交互。** 相反，可以依靠选择性注水来确定与用户交互的组件的优先级，并尽早注水。
 
 `<Suspense>` 组件可作为所有这些功能的选择加入。这些改进本身在 React 内部是自动的，我们希望它们能够与大多数现有的 React 代码一起使用。 这证明了以声明方式表达加载状态的能力。 从 `if (isLoading)` 到 `<Suspense>` 看起来可能没什么大的变化，但正是它解锁了所有这些改进。
