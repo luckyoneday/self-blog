@@ -1,7 +1,7 @@
 ---
-title: "面试"
-draft: true
-menu: "main-hide"
+title: "面试题"
+# draft: true
+menu: "main"
 weight: 50
 ---
 
@@ -26,5 +26,3 @@ weight: 50
 - [手写代码](./write)
 
 - [算法](./algorithm)
-
-- [面试实战](./action)
