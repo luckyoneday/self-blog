@@ -25,7 +25,7 @@ author: "xuyou"
 </ul>
 ```
 
-这样写违反了 **Hooks 必须在组件顶部被调用** 的规则，`useRef` 不能在条件语句和循环中被调用。`map()` 自然也不可以。
+因为违反了 **Hooks 必须在组件顶部被调用** 的规则，`useRef` 不能在条件语句和循环中被调用。`map()` 里自然也不可以。
 
 一种方法是获取到父节点，然后使用操作 DOM 的方法例如 `querySelectorAll` 来获取到列表节点，但这样很不稳定，因为会受到子节点个数或 DOM 结构变化的影响。 
 
@@ -61,11 +61,11 @@ return (
 )
 ```
 
-这样 ref 中存储的是一个 `<Id, Node>` 的 `Map` 映射。这样就可以通过 id 的 `Map` 映射来获取到相应节点~
+这样 ref 中存储的是一个 `<Id, Node>` 的 `Map` 映射。就可以通过 id 的 `Map` 映射来获取到相应节点~
 
 ### 获取另一个组件的 DOM 节点
 
-当我们为一个原生节点设置 ref 时，React 会将节点挂在 `current` 属性上。但是当我们想在封装好的组件中使用 `ref`，就会遇到这样的报错：
+当我们为一个原生节点设置 ref 时，React 会将节点挂在 `current` 属性上。但是当我们想在封装好的组件中使用 ref，就会遇到这样的报错：
 
 ![error-1](../../static-img/53-react-ref/ref-error.png)
 
@@ -94,7 +94,7 @@ const MyInput = forwardRef((props, ref) => {
 });
 ```
 
-这样尽管 `realInputRef` 挂载了内部 DOM 元素，但是暴露出去的 `ref` 通过 `useImperativeHandle` 限制了操作 DOM 的方法，有效的增加了外部代码的可预期性。
+尽管 `realInputRef` 挂载了内部 DOM 元素，但是暴露出去的 `ref` 通过 `useImperativeHandle` 限制了操作 DOM 的方法，有效的增加了外部代码的可预期性。
 
 ### 为什么要限制操作 DOM
 
@@ -105,3 +105,8 @@ const MyInput = forwardRef((props, ref) => {
 将原生的 DOM 操作和 React 控制的部分分开，也可以避免这样的问题~~但是自然是推荐限制 ref 使用来规范我们的代码。
 
 > 官网最后还有一个 [使用 flushSync 同步更新 state 的例子](https://beta.reactjs.org/learn/manipulating-the-dom-with-refs#when-react-attaches-the-refs)，也是在表达 React state 和 DOM 操作存在的不符合预期的地方，值得注意一下。
+
+### 参考资料
+
+- [referencing-values-with-refs](https://beta.reactjs.org/learn/referencing-values-with-refs)
+- [manipulating-the-dom-with-refs](https://beta.reactjs.org/learn/manipulating-the-dom-with-refs)
