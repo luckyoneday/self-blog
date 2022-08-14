@@ -3,7 +3,7 @@ title: "React Effect"
 date: 2022-07-13T11:40:17+08:00
 lastmod: 2022-07-13T11:40:17+08:00
 draft: false
-toc: false
+toc: true
 keywords: ["daily"]
 description: "新文档里的 React Effects"
 tags: ["JavaScript", "React"]

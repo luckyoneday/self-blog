@@ -3,13 +3,12 @@ title: "React Ref"
 date: 2022-08-07T19:57:18+08:00
 lastmod: 2022-08-07T19:57:18+08:00
 draft: false
-toc: false
+toc: true
 keywords: ["daily"]
 description: "新文档里的 React Refs"
 tags: ["JavaScript", "React"]
 author: "xuyou"
 ---
-
 
 ### 怎么用 ref callback 获取一个列表的 DOM 节点
 
