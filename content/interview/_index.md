@@ -1,7 +1,7 @@
 ---
 title: "面试题"
 # draft: true
-menu: "main"
+menu: "main-hide"
 weight: 50
 ---
 

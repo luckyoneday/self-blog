@@ -103,32 +103,7 @@ const settingsMap = new Map(Object.entries(settings)) as MapFromObject<
 settingsMap.get("role").toLowerCase(); // 'admin'
 ```
 
-## 映射类型
-
-映射类型( `Mapped types` )允许我们从现有类型中额外创建新的类型。一个常见的使用场景是将一个对象的所有属性变为*只读 (read-only)*。
-
-```typescript
-type Readonly<T> = {
-  readonly [K in keyof T]: T[K];
-};
-```
-
-`Readonly` 类型的作用是将传入的属性变为只读。例如 TypeScript 中是这样定义 [`Object.freeze`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)的：
-
-```typescript
-interface ObjectConstructor {
-  /**
-   * 防止修改现有的属性和值
-   * 也防止新增属性
-   * @param o 需要被锁的对象
-   */
-  freeze<T>(o: T): Readonly<T>;
-}
-```
-
-如我们所见，`Object.freeze` 函数返回使用 Readonly 修饰符映射的对象。
-
-还有一些很多用处的别的内置修饰符，比如 `Pick` 、 `Partial`：
+还有一些很多用处的内置修饰符，比如 `Pick` 、 `Partial`：
 
 ```typescript
 type Pick<T, K extends keyof T> = {
