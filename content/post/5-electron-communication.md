@@ -13,6 +13,8 @@ author: "youting"
 
 Electron 中有两种进程：主进程和渲染进程。
 
+<!--more-->
+
 ## 主进程
 
 一个 electron 应用只有一个主进程，主进程指的是 `package.json` 文件中 `main` 字段指定的文件。主进程通过 `BrowserWindow` 实例来创建窗口，例如：
