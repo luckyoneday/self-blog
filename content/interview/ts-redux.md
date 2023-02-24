@@ -149,8 +149,4 @@ export default Person1;
 
 # Redux
 
-```js
-const store = createStore(reducer);
-// store 有三个方法： getState、subscribe、dispatch
-// 发布订阅机制 -- subscribe 订阅一个事件，dispatch 派发。
-```
+- [redux实现](../daily/60-redux-source.md)

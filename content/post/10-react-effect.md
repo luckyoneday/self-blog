@@ -10,9 +10,9 @@ tags: ["JavaScript", "React"]
 author: "xuyou"
 ---
 
-## 什么时候用 Effect
-
 在 React 组件中有两种逻辑：
+
+<!--more-->
 
 - 渲染代码（Rendering code）：使用 `props` 和 `state` 计算出一段 JSX。渲染代码需要是纯函数，不能有额外的操作。
 - 事件处理（Event handlers）：组件内部包含的函数，用于响应用户操作，可以包含副作用。
